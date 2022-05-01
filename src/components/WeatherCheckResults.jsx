@@ -9,11 +9,11 @@ const DetailCard = ({ icon, detail, type }) => {
     <>
       <Icon icon={icon} className="text-[30px]" />
       <div>
-        <p>Temperature : {detail.temp}</p>
-        <p>Temperature Min. : {detail.temp_min}</p>
-        <p>Temperature Max. : {detail.temp_max}</p>
-        <p>Pressure : {detail.pressure}</p>
-        <p>Humidity : {detail.humidity}</p>
+        <p>Temperature : {detail.temp}°C</p>
+        <p>Temperature Min. : {detail.temp_min}°C</p>
+        <p>Temperature Max. : {detail.temp_max}°C</p>
+        <p>Pressure : {detail.pressure}hPa</p>
+        <p>Humidity : {detail.humidity}%</p>
       </div>
     </>
   );
@@ -21,7 +21,7 @@ const DetailCard = ({ icon, detail, type }) => {
   const visibility = (
     <>
       <Icon icon={icon} className="text-[30px]" />
-      <p>Visibility : {detail}</p>
+      <p>Visibility : {detail}km</p>
     </>
   );
 
@@ -36,8 +36,8 @@ const DetailCard = ({ icon, detail, type }) => {
     <>
       <Icon icon={icon} className="text-[30px]" />
       <div>
-        <p>Wind Speed : {detail.speed}</p>
-        <p>Wind Direction : {detail.deg}</p>
+        <p>Wind Speed : {detail.speed}m/s</p>
+        <p>Wind Direction : {detail.deg}deg</p>
       </div>
     </>
   );
@@ -137,7 +137,11 @@ const WeatherCheckResults = ({ results }) => {
               <p className="text-xl">
                 {curWeather.name}, {curWeather.sys.country}
               </p>
-              <p className="text-md">{convertToUTCDate(curWeather.dt)}</p>
+              <p className="text-md">
+                {convertToUTCDate(curWeather.dt)}
+                {", "}
+                {convertToUTCDate(curWeather.dt, "time")}
+              </p>
             </>
           )}
         </section>

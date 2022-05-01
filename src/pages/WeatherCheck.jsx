@@ -1,32 +1,8 @@
 import React, { useState } from "react";
 import WeatherCheckResults from "../components/WeatherCheckResults";
 import Waves from "../assets/images/waves.png";
-import { GEOCODING_API_SERVICE } from "../utils/API";
-import FormInput from "../components/FormInput";
 
 const WeatherCheck = ({ results }) => {
-  // const [results, setResults] = useState({
-  //   lat: 0,
-  //   lon: 0,
-  // });
-  // const [city, setCity] = useState("");
-
-  // async function getGeolocation(e) {
-  //   e.preventDefault();
-  //   if (!city) return;
-
-  //   const res = await fetch(
-  //     `${GEOCODING_API_SERVICE}direct?q=${city}&limit=1&appid=${process.env.REACT_APP_WEATHER_KEY}`
-  //   );
-  //   const data = await res.json();
-  //   setResults({
-  //     lat: data[0].lat,
-  //     lon: data[0].lon,
-  //   });
-
-  //   setCity("");
-  // }
-
   return (
     <>
       <div className="bg-[#EFC2AC] p-16">
@@ -45,13 +21,8 @@ const WeatherCheck = ({ results }) => {
                 <p className="text-lg mb-5">
                   Get the latest weather information in that area.
                 </p>
-                {/* <FormInput
-                  onSubmit={getGeolocation}
-                  city={city}
-                  setCity={setCity}
-                /> */}
               </section>
-              <section className="w-1/2 weather-check-card">
+              <section className="w-1/3 weather-check-card">
                 <WeatherCheckResults results={results} />
               </section>
             </div>

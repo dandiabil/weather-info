@@ -5,6 +5,7 @@ export function convertToPascalCase(string) {
   );
 }
 
-export function convertToUTCDate(number) {
-  return new Date(number * 1000).toDateString();
+export function convertToUTCDate(number, type = "date") {
+  if (type === "date") return new Date(number * 1000).toDateString();
+  if (type === "time") return new Date(number * 1000).toLocaleTimeString();
 }

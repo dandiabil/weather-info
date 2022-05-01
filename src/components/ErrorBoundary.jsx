@@ -19,11 +19,8 @@ class ErrorBoundary extends Component {
     if (this.state.hasError) {
       // render custom fallback UI
       return (
-        // <div class="d-flex justify-content-center">
-        //   <Error errorMessage={"Something went wrong.. :-/"} />
-        // </div>
-        <div>
-            <p>Error</p>
+        <div className="flex justify-center">
+          <p>Something went wrong..</p>
         </div>
       );
     }

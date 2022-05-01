@@ -1,31 +1,8 @@
 import React, { useState } from "react";
-import FormInput from "../components/FormInput";
 import WeatherForecastResults from "../components/WeatherForecastResults";
 import { GEOCODING_API_SERVICE } from "../utils/API";
 
 const WeatherForecast = ({ results }) => {
-  // const [results, setResults] = useState({
-  //   lat: 0,
-  //   lon: 0,
-  // });
-  // const [city, setCity] = useState("");
-
-  // async function getGeolocation(e) {
-  //   e.preventDefault();
-  //   if (!city) return;
-
-  //   const res = await fetch(
-  //     `${GEOCODING_API_SERVICE}direct?q=${city}&limit=1&appid=${process.env.REACT_APP_WEATHER_KEY}`
-  //   );
-  //   const data = await res.json();
-  //   setResults({
-  //     lat: data[0].lat,
-  //     lon: data[0].lon,
-  //   });
-
-  //   setCity("");
-  // }
-
   return (
     <div className="p-16">
       <div className="mx-auto bg-white rounded-xl">
@@ -46,11 +23,6 @@ const WeatherForecast = ({ results }) => {
                 pariatur suscipit eum aliquid saepe voluptas doloremque?
                 Quisquam harum tenetur consequatur?
               </p>
-              {/* <FormInput
-                onSubmit={getGeolocation}
-                city={city}
-                setCity={setCity}
-              /> */}
             </section>
           </div>
         </div>
