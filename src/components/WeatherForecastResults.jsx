@@ -3,7 +3,6 @@ import { WEATHER_API_SERVICE } from "../utils/API";
 import LoadingGif from "../assets/images/Ajux_loader.gif";
 import Tabs from "./Tabs";
 import { convertToPascalCase, convertToUTCDate } from "../utils/utils";
-import data from "../onecall-example.json";
 
 const DetailCard = ({ daily, hourly, minutely, active }) => {
   const firstHour = hourly[0];
@@ -159,8 +158,8 @@ const WeatherForecastResults = ({ results }) => {
   const [forecast, setForecast] = useState(null);
 
   useEffect(() => {
-    // getForecast();
-    setForecast(data);
+    getForecast();
+
     async function getForecast() {
       if (results.lat === 0 && results.lon === 0) return;
 
@@ -205,9 +204,9 @@ const WeatherForecastResults = ({ results }) => {
             loadingContent
           ) : (
             <DetailCard
-              daily={data.daily}
-              hourly={data.hourly}
-              minutely={data.minutely}
+              daily={forecast.daily}
+              hourly={forecast.hourly}
+              minutely={forecast.minutely}
               active={active}
             />
           )}

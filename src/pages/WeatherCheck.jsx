@@ -5,7 +5,7 @@ import Waves from "../assets/images/waves.png";
 const WeatherCheck = ({ results }) => {
   return (
     <>
-      <div className="bg-[#EFC2AC] p-16">
+      <div className="bg-[#EFC2AC] p-16 z-20 relative" id="weather-check">
         <div className="mx-auto bg-white rounded-xl">
           <div className="w-3/4 mx-auto py-16">
             <div className="flex items-center justify-between h-full">

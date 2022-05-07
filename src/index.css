@@ -39,6 +39,14 @@
   z-index: 1;
 }
 
+header.shrink {
+  background: #023047;
+  height: 8vh;
+  color: #f3f3f3;
+  background: rgba(230, 170, 142, 0.5);
+  backdrop-filter: blur(4px);
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
