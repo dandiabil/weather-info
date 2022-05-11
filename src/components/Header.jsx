@@ -13,7 +13,7 @@ const Header = () => {
           <img src={LandingIcon} alt="logo" className="w-14" />
           <p className="text-2xl text-[#F3F3F3] font-bold">
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#023047] to-[#219EBC]">
-              Weather App
+              Weather Info
             </span>
           </p>
         </figure>

@@ -19,7 +19,7 @@ const Footer = () => {
         </p>
         <p className="font-semibold">Copyright&copy; 2022</p>
         <p className="text-2xl font-bold">
-          <span className="">Weather App</span>
+          <span className="">Weather Info</span>
         </p>
       </div>
     </footer>

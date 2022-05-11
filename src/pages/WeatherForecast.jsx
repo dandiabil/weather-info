@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import WeatherForecastResults from "../components/WeatherForecastResults";
-import { GEOCODING_API_SERVICE } from "../utils/API";
 
 const WeatherForecast = ({ results }) => {
   return (

@@ -38,6 +38,7 @@ const MapComponents = () => {
     const baseMaps = { "OSM Standard": osm };
     // const map = L.map("map", { layers: [osm] });
 
+    // eslint-disable-next-line no-unused-vars
     const layersControl = L.control.layers(baseMaps, overlayMaps).addTo(map);
   }, [map]);
 

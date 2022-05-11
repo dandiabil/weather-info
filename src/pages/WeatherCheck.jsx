@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import WeatherCheckResults from "../components/WeatherCheckResults";
 import Waves from "../assets/images/waves.png";
 
