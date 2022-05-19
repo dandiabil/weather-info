@@ -9,9 +9,9 @@ const Tabs = ({ active, setActive }) => {
       case "Hourly":
         setActive("Hourly");
         break;
-      case "Minutely":
-        setActive("Minutely");
-        break;
+      // case "Minutely":
+      //   setActive("Minutely");
+      //   break;
       default:
         break;
     }
@@ -39,15 +39,6 @@ const Tabs = ({ active, setActive }) => {
         }
       >
         <p>Hourly</p>
-      </div>
-      <div
-        className={
-          active === "Minutely"
-            ? "selected"
-            : "hover:cursor-pointer hover:text-black transition-all"
-        }
-      >
-        <p>Minutely</p>
       </div>
     </section>
   );
