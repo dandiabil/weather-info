@@ -9,9 +9,6 @@ const Tabs = ({ active, setActive }) => {
       case "Hourly":
         setActive("Hourly");
         break;
-      // case "Minutely":
-      //   setActive("Minutely");
-      //   break;
       default:
         break;
     }

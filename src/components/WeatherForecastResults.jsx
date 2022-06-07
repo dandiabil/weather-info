@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { WEATHER_API_SERVICE } from "../utils/API";
 import LoadingGif from "../assets/images/Ajux_loader.gif";
 import Tabs from "./Tabs";
 import { convertToPascalCase, convertToUTCDate } from "../utils/utils";
@@ -19,13 +18,13 @@ const DetailCard = ({ daily, hourly, active }) => {
                     src={
                       !daily
                         ? ""
-                        : `http://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`
+                        : `http://openweathermap.org/img/wn/${item.weather[0]?.icon}@2x.png`
                     }
                     alt="weather-icon"
                     className="w-full mx-auto"
                   />
                   <p className="text-xs lg:text-sm -mt-3 lg:-mt-5 font-semibold text-center">
-                    {convertToPascalCase(item.weather[0].description)}
+                    {convertToPascalCase(item.weather[0]?.description)}
                   </p>
                 </figure>
                 <div className="w-1/2">
@@ -66,13 +65,13 @@ const DetailCard = ({ daily, hourly, active }) => {
                     src={
                       !hourly
                         ? ""
-                        : `http://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`
+                        : `http://openweathermap.org/img/wn/${item.weather[0]?.icon}@2x.png`
                     }
                     alt="weather-icon"
                     className="w-full mx-auto"
                   />
                   <p className="text-xs -mt-3 font-semibold text-center">
-                    {convertToPascalCase(item.weather[0].description)}
+                    {convertToPascalCase(item.weather[0]?.description)}
                   </p>
                 </figure>
                 <div className="w-1/2">
@@ -111,26 +110,12 @@ const DetailCard = ({ daily, hourly, active }) => {
 
 const WeatherForecastResults = ({ results }) => {
   const [active, setActive] = useState("Daily");
-  const [forecast, setForecast] = useState(null);
 
-  useEffect(() => {
-    getForecast();
-
-    async function getForecast() {
-      if (results.lat === 0 && results.lon === 0) return;
-
-      const res = await fetch(
-        `${WEATHER_API_SERVICE}onecall?lat=${results.lat}&lon=${results.lon}&appid=${process.env.REACT_APP_WEATHER_KEY}&exclude=alerts,current,minutely&units=metric`
-      );
-      const data = await res.json();
-
-      setForecast(data);
-    }
-  }, [results]);
+  useEffect(() => {}, [results]);
 
   return (
     <div className="font-overpass">
-      {!forecast ? (
+      {!results ? (
         <div className="rounded w-full">
           <img
             src={LoadingGif}
@@ -143,34 +128,26 @@ const WeatherForecastResults = ({ results }) => {
           <Tabs active={active} setActive={setActive} />
           <section className="mb-3">
             <p className="text-3xl md:text-4xl font-bold mt-8">
-              {active} Forecast
+              {active} results
             </p>
-            {!forecast ? (
+            {!results ? (
               ""
             ) : (
               <p className="text-xl md:text-2xl font-semibold">
-                {forecast.timezone}
+                {results.timezone}
               </p>
             )}
           </section>
           <section className="flex flex-col lg:flex-row lg:flex-wrap lg:justify-evenly overflow-auto gap-3">
-            {!forecast ? (
+            {!results ? (
               ""
             ) : (
               <DetailCard
-                daily={forecast.daily}
-                hourly={forecast.hourly}
+                daily={results.daily}
+                hourly={results.hourly}
                 active={active}
               />
             )}
-            {/* {forecast && (
-              <DetailCard
-                daily={forecast.daily}
-                hourly={forecast.hourly}
-                minutely={forecast.minutely}
-                active={active}
-              />
-            )} */}
           </section>
         </div>
       )}

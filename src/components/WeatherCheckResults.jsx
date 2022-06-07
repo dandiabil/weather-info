@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import LoadingGif from "../assets/images/Ajux_loader.gif";
-import { WEATHER_API_SERVICE } from "../utils/API";
 import { convertToPascalCase, convertToUTCDate } from "../utils/utils";
 import { Icon } from "@iconify/react";
 
@@ -82,26 +81,9 @@ const DetailCard = ({ icon, detail, type }) => {
 };
 
 const WeatherCheckResults = ({ results }) => {
-  const [curWeather, setCurWeather] = useState(null);
-
-  useEffect(() => {
-    getWeatherData();
-
-    async function getWeatherData() {
-      if (results.lat === 0 && results.lon === 0) return;
-
-      const res = await fetch(
-        `${WEATHER_API_SERVICE}weather?lat=${results.lat}&lon=${results.lon}&appid=${process.env.REACT_APP_WEATHER_KEY}&units=metric`
-      );
-      const data = await res.json();
-
-      setCurWeather(data);
-    }
-  }, [results]);
-
   return (
     <div className="cursor-default">
-      {!curWeather ? (
+      {!results ? (
         <div className="rounded w-full glass-background">
           <img
             src={LoadingGif}
@@ -113,54 +95,54 @@ const WeatherCheckResults = ({ results }) => {
         <div className="py-3 font-overpass lg:flex items-start justify-between gap-5">
           <section className="mb-5">
             <p className="text-3xl md:text-4xl font-semibold">
-              {!curWeather
+              {!results
                 ? "Location Name"
-                : `${curWeather.name}, ${curWeather.sys.country}`}
+                : `${results?.name}, ${results?.sys.country}`}
             </p>
             <p className="italic">
-              {!curWeather
+              {!results
                 ? "Coordinate: 0, 0"
-                : `Coordinate : ${curWeather.coord.lat}, ${curWeather.coord.lon}`}
+                : `Coordinate : ${results?.coord.lat}, ${results?.coord.lon}`}
             </p>
             <p className="text-md md:text-lg font-semibold">
-              {!curWeather
+              {!results
                 ? ""
-                : convertToUTCDate(curWeather.dt) +
+                : convertToUTCDate(results?.dt) +
                   ", " +
-                  convertToUTCDate(curWeather.dt, "time")}
+                  convertToUTCDate(results?.dt, "time")}
             </p>
-            {/* {!curWeather ? (
+            {/* {!results ? (
               <>
                 <p className="text-4xl">
-                  {!curWeather
+                  {!results
                     ? "Location Name"
-                    : `${curWeather.name}, ${curWeather.sys.country}`}
+                    : `${results?.name}, ${results?.sys.country}`}
                 </p>
                 <p className="italic">
-                  {!curWeather
+                  {!results
                     ? "Coordinate: 0, 0"
-                    : `Coordinate : ${curWeather.coord.lat}, ${curWeather.coord.lon}`}
+                    : `Coordinate : ${results?.coord.lat}, ${results?.coord.lon}`}
                 </p>
                 <p className="text-md">
-                  {!curWeather
+                  {!results
                     ? ""
-                    : convertToUTCDate(curWeather.dt) +
+                    : convertToUTCDate(results?.dt) +
                       ", " +
-                      convertToUTCDate(curWeather.dt, "time")}
+                      convertToUTCDate(results?.dt, "time")}
                 </p>
               </>
             ) : (
               <>
                 <p className="italic">
-                  Coordinate : {curWeather.coord.lat}, {curWeather.coord.lon}
+                  Coordinate : {results?.coord.lat}, {results?.coord.lon}
                 </p>
                 <p className="text-4xl">
-                  {curWeather.name}, {curWeather.sys.country}
+                  {results?.name}, {results?.sys.country}
                 </p>
                 <p className="text-md">
-                  {convertToUTCDate(curWeather.dt)}
+                  {convertToUTCDate(results?.dt)}
                   {", "}
-                  {convertToUTCDate(curWeather.dt, "time")}
+                  {convertToUTCDate(results?.dt, "time")}
                 </p>
               </>
             )} */}
@@ -168,33 +150,33 @@ const WeatherCheckResults = ({ results }) => {
               <figure className="w-fit lg:w-full mx-auto">
                 <img
                   src={
-                    !curWeather
+                    !results
                       ? ""
-                      : `http://openweathermap.org/img/wn/${curWeather.weather[0].icon}@2x.png`
+                      : `http://openweathermap.org/img/wn/${results?.weather[0].icon}@2x.png`
                   }
                   alt="weather-icon"
                   className={
-                    !curWeather ? "opacity-0 h-[100px] w-[100px]" : "lg:w-full"
+                    !results ? "opacity-0 h-[100px] w-[100px]" : "lg:w-full"
                   }
                 />
-                {/* {!curWeather ? (
+                {/* {!results ? (
                 <img
-                  src={!curWeather ? '' : `http://openweathermap.org/img/wn/${curWeather.weather[0].icon}@2x.png`}
+                  src={!results ? '' : `http://openweathermap.org/img/wn/${results?.weather[0].icon}@2x.png`}
                   alt="weather-icon"
-                  className={!curWeather ? "opacity-0 h-[100px] w-[100px]" : ''}
+                  className={!results ? "opacity-0 h-[100px] w-[100px]" : ''}
                 />
               ) : (
                 <img
-                  src={`http://openweathermap.org/img/wn/${curWeather.weather[0].icon}@2x.png`}
+                  src={`http://openweathermap.org/img/wn/${results?.weather[0].icon}@2x.png`}
                   alt="weather-icon"
                 />
               )} */}
               </figure>
               <div className="w-[80%]">
                 <p className="text-4xl md:text-5xl font-semibold">
-                  {!curWeather ? "--°C" : `${curWeather.main.temp}°C`}
+                  {!results ? "--°C" : `${results?.main.temp}°C`}
                 </p>
-                {/* {!curWeather ? (
+                {/* {!results ? (
                 <>
                   <p className="text-5xl font-semibold">--°C</p>
                   <p className="italic">Weather Condition</p>
@@ -203,11 +185,11 @@ const WeatherCheckResults = ({ results }) => {
               ) : (
                 <>
                   <p className="text-5xl font-semibold">
-                    {curWeather.main.temp}°C
+                    {results?.main.temp}°C
                   </p>
-                  <p className="italic">{curWeather.weather[0].main}</p>
+                  <p className="italic">{results?.weather[0].main}</p>
                   <p className="text-lg font-semibold">
-                    {convertToPascalCase(curWeather.weather[0].description)}
+                    {convertToPascalCase(results?.weather[0].description)}
                   </p>
                 </>
               )} */}
@@ -215,39 +197,39 @@ const WeatherCheckResults = ({ results }) => {
             </div>
             <div className="mb-5">
               <p className="italic md:text-lg">
-                {!curWeather ? "Weather Condition" : curWeather.weather[0].main}
+                {!results ? "Weather Condition" : results?.weather[0].main}
               </p>
               <p className="text-lg md:text-xl font-semibold">
-                {!curWeather
+                {!results
                   ? "Weather Description"
-                  : convertToPascalCase(curWeather.weather[0].description)}
+                  : convertToPascalCase(results?.weather[0].description)}
               </p>
             </div>
           </section>
 
           <section className="lg:w-[50%]">
-            {!curWeather ? (
+            {!results ? (
               ""
             ) : (
               <>
                 <DetailCard
                   icon={"fluent:temperature-24-regular"}
-                  detail={curWeather.main}
+                  detail={results?.main}
                   type="temp"
                 />
                 <DetailCard
                   icon={"ic:outline-visibility"}
-                  detail={curWeather.visibility}
+                  detail={results?.visibility}
                   type="vis"
                 />
                 <DetailCard
                   icon={"akar-icons:cloud"}
-                  detail={curWeather.clouds}
+                  detail={results?.clouds}
                   type="cloud"
                 />
                 <DetailCard
                   icon={"bi:wind"}
-                  detail={curWeather.wind}
+                  detail={results?.wind}
                   type="wind"
                 />
               </>

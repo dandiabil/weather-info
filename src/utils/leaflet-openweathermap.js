@@ -4,7 +4,8 @@
  * Project page: https://github.com/buche/leaflet-openweathermap/
  */
 import L from "leaflet";
-import { WEATHER_API_SERVICE } from "./API";
+
+const WEATHER_API_SERVICE = "https://api.openweathermap.org/data/2.5/";
 
 L.OWM = L.TileLayer.extend({
   options: {
