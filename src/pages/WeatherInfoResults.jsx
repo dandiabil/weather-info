@@ -43,7 +43,7 @@ const WeatherInfoResults = ({ results, refEl }) => {
       <img
         src={Waves}
         alt="waves"
-        className="relative rotate-180 w-full bottom-10"
+        className="relative rotate-180 w-full bottom-10 max-h-80"
       />
     </>
   );

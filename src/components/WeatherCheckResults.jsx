@@ -111,41 +111,6 @@ const WeatherCheckResults = ({ results }) => {
                   ", " +
                   convertToUTCDate(results?.dt, "time")}
             </p>
-            {/* {!results ? (
-              <>
-                <p className="text-4xl">
-                  {!results
-                    ? "Location Name"
-                    : `${results?.name}, ${results?.sys.country}`}
-                </p>
-                <p className="italic">
-                  {!results
-                    ? "Coordinate: 0, 0"
-                    : `Coordinate : ${results?.coord.lat}, ${results?.coord.lon}`}
-                </p>
-                <p className="text-md">
-                  {!results
-                    ? ""
-                    : convertToUTCDate(results?.dt) +
-                      ", " +
-                      convertToUTCDate(results?.dt, "time")}
-                </p>
-              </>
-            ) : (
-              <>
-                <p className="italic">
-                  Coordinate : {results?.coord.lat}, {results?.coord.lon}
-                </p>
-                <p className="text-4xl">
-                  {results?.name}, {results?.sys.country}
-                </p>
-                <p className="text-md">
-                  {convertToUTCDate(results?.dt)}
-                  {", "}
-                  {convertToUTCDate(results?.dt, "time")}
-                </p>
-              </>
-            )} */}
             <div className="flex justify-start items-center mb-5">
               <figure className="w-fit lg:w-full mx-auto">
                 <img
@@ -159,40 +124,11 @@ const WeatherCheckResults = ({ results }) => {
                     !results ? "opacity-0 h-[100px] w-[100px]" : "lg:w-full"
                   }
                 />
-                {/* {!results ? (
-                <img
-                  src={!results ? '' : `http://openweathermap.org/img/wn/${results?.weather[0].icon}@2x.png`}
-                  alt="weather-icon"
-                  className={!results ? "opacity-0 h-[100px] w-[100px]" : ''}
-                />
-              ) : (
-                <img
-                  src={`http://openweathermap.org/img/wn/${results?.weather[0].icon}@2x.png`}
-                  alt="weather-icon"
-                />
-              )} */}
               </figure>
               <div className="w-[80%]">
                 <p className="text-4xl md:text-5xl font-semibold">
                   {!results ? "--°C" : `${results?.main.temp}°C`}
                 </p>
-                {/* {!results ? (
-                <>
-                  <p className="text-5xl font-semibold">--°C</p>
-                  <p className="italic">Weather Condition</p>
-                  <p className="text-lg font-semibold">Weather Description</p>
-                </>
-              ) : (
-                <>
-                  <p className="text-5xl font-semibold">
-                    {results?.main.temp}°C
-                  </p>
-                  <p className="italic">{results?.weather[0].main}</p>
-                  <p className="text-lg font-semibold">
-                    {convertToPascalCase(results?.weather[0].description)}
-                  </p>
-                </>
-              )} */}
               </div>
             </div>
             <div className="mb-5">
@@ -208,32 +144,22 @@ const WeatherCheckResults = ({ results }) => {
           </section>
 
           <section className="lg:w-[50%]">
-            {!results ? (
-              ""
-            ) : (
-              <>
-                <DetailCard
-                  icon={"fluent:temperature-24-regular"}
-                  detail={results?.main}
-                  type="temp"
-                />
-                <DetailCard
-                  icon={"ic:outline-visibility"}
-                  detail={results?.visibility}
-                  type="vis"
-                />
-                <DetailCard
-                  icon={"akar-icons:cloud"}
-                  detail={results?.clouds}
-                  type="cloud"
-                />
-                <DetailCard
-                  icon={"bi:wind"}
-                  detail={results?.wind}
-                  type="wind"
-                />
-              </>
-            )}
+            <DetailCard
+              icon={"fluent:temperature-24-regular"}
+              detail={results?.main}
+              type="temp"
+            />
+            <DetailCard
+              icon={"ic:outline-visibility"}
+              detail={results?.visibility}
+              type="vis"
+            />
+            <DetailCard
+              icon={"akar-icons:cloud"}
+              detail={results?.clouds}
+              type="cloud"
+            />
+            <DetailCard icon={"bi:wind"} detail={results?.wind} type="wind" />
           </section>
         </div>
       )}

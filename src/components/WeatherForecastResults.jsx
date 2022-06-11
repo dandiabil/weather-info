@@ -8,7 +8,10 @@ const DetailCard = ({ daily, hourly, active }) => {
     <>
       {active === "Daily"
         ? daily.map((item) => (
-            <div className="cursor-default h-full p-2 rounded card__details shadow-md lg:w-[400px] lg:py-4">
+            <div
+              className="cursor-default h-full p-2 rounded card__details shadow-md lg:w-[400px] lg:py-4"
+              key={item.dt}
+            >
               <p className="hidden font-bold lg:block lg:text-center lg:text-xl">
                 {convertToUTCDate(item.dt)}
               </p>
@@ -58,7 +61,10 @@ const DetailCard = ({ daily, hourly, active }) => {
         : ""}
       {active === "Hourly"
         ? hourly.map((item) => (
-            <div className="cursor-default h-full p-2 rounded card__details shadow-md lg:w-[400px] lg:py-4">
+            <div
+              className="cursor-default h-full p-2 rounded card__details shadow-md lg:w-[400px] lg:py-4"
+              key={item.dt}
+            >
               <div className="flex items-center justify-evenly">
                 <figure className="lg:max-w-[100px]">
                   <img
@@ -130,24 +136,16 @@ const WeatherForecastResults = ({ results }) => {
             <p className="text-3xl md:text-4xl font-bold mt-8">
               {active} results
             </p>
-            {!results ? (
-              ""
-            ) : (
-              <p className="text-xl md:text-2xl font-semibold">
-                {results.timezone}
-              </p>
-            )}
+            <p className="text-xl md:text-2xl font-semibold">
+              {results.timezone}
+            </p>
           </section>
           <section className="flex flex-col lg:flex-row lg:flex-wrap lg:justify-evenly overflow-auto gap-3">
-            {!results ? (
-              ""
-            ) : (
-              <DetailCard
-                daily={results.daily}
-                hourly={results.hourly}
-                active={active}
-              />
-            )}
+            <DetailCard
+              daily={results.daily}
+              hourly={results.hourly}
+              active={active}
+            />
           </section>
         </div>
       )}
